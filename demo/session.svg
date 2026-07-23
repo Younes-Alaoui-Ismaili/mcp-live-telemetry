@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" font-family="ui-monospace, 'Cascadia Code', 'SFMono-Regular', 'Courier New', monospace" font-size="18">
+  <rect x="0" y="0" width="1200" height="600" rx="12" fill="#0d1117"/>
+  <rect x="0" y="0" width="1200" height="40" rx="12" fill="#161b22"/>
+  <rect x="0" y="28" width="1200" height="12" fill="#161b22"/>
+  <circle cx="24" cy="20" r="6" fill="#ff5f56"/>
+  <circle cx="46" cy="20" r="6" fill="#ffbd2e"/>
+  <circle cx="68" cy="20" r="6" fill="#27c93f"/>
+  <text x="600" y="25" fill="#8b949e" text-anchor="middle" font-size="14">mcp-live-telemetry: real stdio session</text>
+
+  <text x="24" y="84" fill="#7ee787">$ <tspan fill="#c9d1d9">node scripts/smoke.mjs</tspan></text>
+  <text x="24" y="114" fill="#8b949e">connected. tools: list_devices, get_telemetry, get_anomalies, simulate_fault</text>
+
+  <text x="24" y="162" fill="#7ee787">&gt; <tspan fill="#c9d1d9">list_devices</tspan></text>
+  <text x="24" y="190" fill="#79c0ff">  press-01     <tspan fill="#c9d1d9">Hydraulic Press    running   62.10 C   2.08 mm/s</tspan></text>
+  <text x="24" y="216" fill="#79c0ff">  spindle-02   <tspan fill="#c9d1d9">CNC Spindle        running   46.82 C   1.61 mm/s</tspan></text>
+  <text x="24" y="242" fill="#79c0ff">  conveyor-03  <tspan fill="#c9d1d9">Conveyor Motor     running   38.33 C   1.22 mm/s</tspan></text>
+  <text x="24" y="268" fill="#79c0ff">  pump-04      <tspan fill="#c9d1d9">Coolant Pump       running   53.58 C   2.05 mm/s</tspan></text>
+
+  <text x="24" y="316" fill="#7ee787">&gt; <tspan fill="#c9d1d9">simulate_fault press-01 overheat</tspan></text>
+  <text x="24" y="344" fill="#8b949e">  injected fault-1-press-01  (active 300 s)</text>
+
+  <text x="24" y="392" fill="#7ee787">&gt; <tspan fill="#c9d1d9">get_anomalies press-01</tspan></text>
+  <text x="24" y="420" fill="#ffa657">  ANOMALY  press-01  temperature  peak 88.49 C  threshold 77 C  x5</text>
+
+  <text x="24" y="468" fill="#7ee787">smoke ok</text>
+
+  <text x="24" y="540" fill="#6e7681" font-size="14">Healthy machines stay under threshold. An injected fault is detected inside the same session.</text>
+</svg>

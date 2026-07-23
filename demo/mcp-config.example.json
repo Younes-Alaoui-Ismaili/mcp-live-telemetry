@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "live-telemetry": {
+      "command": "node",
+      "args": ["/absolute/path/to/mcp-live-telemetry/dist/index.js"]
+    }
+  }
+}
