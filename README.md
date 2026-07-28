@@ -117,6 +117,18 @@ will differ: they are derived from the clock, and only the behaviour is fixed.
 
 Each tool ships a strict Zod input schema, a documented output schema, and behaviour annotations (`readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`).
 
+## A dashboard that consumes this server
+
+[Industrial Telemetry Dashboard](https://github.com/Younes-Alaoui-Ismaili/Industrial-telemetry-dashboard)
+is a supervision screen built against this server. It calls the four tools defined above
+through a small local bridge, mapping devices, readings and detected anomalies onto a
+plant view with threshold alarms and acknowledgement.
+
+**[Live demo](https://younes-alaoui-ismaili.github.io/Industrial-telemetry-dashboard/)** -
+runs on a self-contained simulator, so it needs nothing installed. The live MCP mode is
+local only: a page served over `https` cannot reach a server on `http://localhost`, so
+selecting it on the published demo reports the server as unavailable, by design.
+
 ## Quickstart
 
 ```bash
