@@ -7,7 +7,104 @@ A [Model Context Protocol](https://modelcontextprotocol.io) server that exposes 
 
 The simulator is deliberately isolated behind a thin boundary so it can be swapped for a real data source without touching the tools. See [Adapting this to your data source](#adapting-this-to-your-data-source).
 
-![A real stdio MCP session: list devices, inject a fault, detect it](demo/session.svg)
+![Illustration of a stdio MCP session: list devices, inject a fault, detect it](demo/session.svg)
+
+*An illustration, not a screen capture. Readings are a function of the current timestamp, so every run prints different numbers. The unedited output of a real run is below.*
+
+## A real session, end to end
+
+The block below is the unedited output of `npm run smoke`, which drives the built server as a real
+subprocess over stdio using the MCP client SDK. It is not an in-process shortcut, and it is not a
+transcript written by hand.
+
+```
+$ npm run smoke
+
+> mcp-live-telemetry@0.1.0 smoke
+> node scripts/smoke.mjs
+
+mcp-live-telemetry 0.1.0 running on stdio
+connected. tools: list_devices, get_telemetry, get_anomalies, simulate_fault
+
+--- list_devices ---
+{
+  "count": 4,
+  "devices": [
+    {
+      "id": "press-01",
+      "name": "Hydraulic Press",
+      "state": "running",
+      "temperature_c": 65.5,
+      "vibration_mm_s": 2.116,
+      "timestamp": 1785240876420
+    },
+    {
+      "id": "spindle-02",
+      "name": "CNC Spindle",
+      "state": "running",
+      "temperature_c": 51.67,
+      "vibration_mm_s": 1.411,
+      "timestamp": 1785240876420
+    },
+    {
+      "id": "conveyor-03",
+      "name": "Conveyor Motor",
+      "state": "running",
+      "temperature_c": 42.74,
+      "vibration_mm_s": 0.943,
+      "timestamp": 1785240876420
+    },
+    {
+      "id": "pump-04",
+      "name": "Coolant Pump",
+      "state": "running",
+      "temperature_c": 57.42,
+      "vibration_mm_s": 1.796,
+      "timestamp": 1785240876420
+    }
+  ]
+}
+
+--- simulate_fault press-01 overheat ---
+Injected overheat fault on press-01, active until 2026-07-28T12:19:36.425Z. Call get_anomalies or get_telemetry to see it.
+
+{
+  "id": "fault-1-press-01",
+  "device_id": "press-01",
+  "type": "overheat",
+  "started_at": 1785240756425,
+  "ends_at": 1785241176425,
+  "duration_ms": 300000
+}
+
+--- get_anomalies press-01 ---
+{
+  "count": 1,
+  "window": {
+    "start": 1785239976428,
+    "end": 1785240876428,
+    "step_ms": 30000
+  },
+  "anomalies": [
+    {
+      "id": "press-01:temperature:1785240756428",
+      "device_id": "press-01",
+      "metric": "temperature",
+      "started_at": 1785240756428,
+      "ended_at": 1785240876428,
+      "peak_value": 93.79,
+      "threshold": 77,
+      "sample_count": 5
+    }
+  ]
+}
+
+smoke ok
+```
+
+A healthy fleet stays under its thresholds. The injected fault crosses one, and the anomaly surfaces
+in the same session, through the same tools an MCP client would call. Run it yourself and the numbers
+will differ: they are derived from the clock, and only the behaviour is fixed.
 
 ## Tools
 
@@ -70,7 +167,7 @@ npm run lint      # eslint
 npm run build     # type check and emit dist/
 ```
 
-A scripted terminal demo lives in [`demo/demo.tape`](demo/demo.tape); render it to an animated GIF with [vhs](https://github.com/charmbracelet/vhs). A step by step live demo script is in [`docs/DEMO.md`](docs/DEMO.md).
+A step by step live demo script is in [`docs/DEMO.md`](docs/DEMO.md).
 
 ## How the simulation works
 

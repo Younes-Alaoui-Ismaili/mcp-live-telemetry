@@ -5,7 +5,7 @@
   <circle cx="24" cy="20" r="6" fill="#ff5f56"/>
   <circle cx="46" cy="20" r="6" fill="#ffbd2e"/>
   <circle cx="68" cy="20" r="6" fill="#27c93f"/>
-  <text x="600" y="25" fill="#8b949e" text-anchor="middle" font-size="14">mcp-live-telemetry: real stdio session</text>
+  <text x="600" y="25" fill="#8b949e" text-anchor="middle" font-size="14">mcp-live-telemetry: stdio session (illustration)</text>
 
   <text x="24" y="84" fill="#7ee787">$ <tspan fill="#c9d1d9">node scripts/smoke.mjs</tspan></text>
   <text x="24" y="114" fill="#8b949e">connected. tools: list_devices, get_telemetry, get_anomalies, simulate_fault</text>
