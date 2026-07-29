@@ -1,3 +1,5 @@
+![mcp-live-telemetry banner](docs/banner.jpg)
+
 # mcp-live-telemetry
 
 [![CI](https://github.com/Younes-Alaoui-Ismaili/mcp-live-telemetry/actions/workflows/ci.yml/badge.svg)](https://github.com/Younes-Alaoui-Ismaili/mcp-live-telemetry/actions/workflows/ci.yml)
