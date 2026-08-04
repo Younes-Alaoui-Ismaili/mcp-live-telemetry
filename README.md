@@ -122,14 +122,18 @@ Each tool ships a strict Zod input schema, a documented output schema, and behav
 ## A dashboard that consumes this server
 
 [Industrial Telemetry Dashboard](https://github.com/Younes-Alaoui-Ismaili/Industrial-telemetry-dashboard)
-is a supervision screen built against this server. It calls the four tools defined above
-through a small local bridge, mapping devices, readings and detected anomalies onto a
-plant view with threshold alarms and acknowledgement.
+is a supervision screen whose live source reads this server. It calls the four tools above
+through a small local bridge, which speaks MCP over stdio to the server and serves the tool
+results to the page over HTTP, mapping devices, readings and detected anomalies onto a plant
+view with threshold alarms and acknowledgement. That mode is implemented and covered by the
+dashboard's tests, on both sides of the bridge.
 
-**[Live demo](https://younes-alaoui-ismaili.github.io/Industrial-telemetry-dashboard/)** -
-runs on a self-contained simulator, so it needs nothing installed. The live MCP mode is
-local only: a page served over `https` cannot reach a server on `http://localhost`, so
-selecting it on the published demo reports the server as unavailable, by design.
+**[Live demo](https://younes-alaoui-ismaili.github.io/Industrial-telemetry-dashboard/)**
+
+The published demo does not read this server. It runs on the dashboard's own built-in
+simulator, which is why it needs nothing installed. The live source is used from a local build
+instead: a browser blocks a page served over `https` from reaching a service on
+`http://localhost`, and the bridge is local by design.
 
 ## Quickstart
 
