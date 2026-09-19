@@ -2,6 +2,8 @@
 
 # mcp-live-telemetry
 
+**Persistent source extension:** [API source and finite producer](docs/api-source.md). The server can now read the sibling dashboard's authenticated SQL-backed API over local MCP stdio. The existing simulator remains the default; API mode refuses fault injection. Run `node scripts/prove-api.mjs` for a real subprocess/API integration proof. [Retained local and Azure results](evidence/README.md) distinguish the source and verify unchanged data after operational exercises.
+
 [![CI](https://github.com/Younes-Alaoui-Ismaili/mcp-live-telemetry/actions/workflows/ci.yml/badge.svg)](https://github.com/Younes-Alaoui-Ismaili/mcp-live-telemetry/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
@@ -185,7 +187,7 @@ npm run lint      # eslint
 npm run build     # type check and emit dist/
 ```
 
-A step by step live demo script is in [`docs/DEMO.md`](docs/DEMO.md).
+A step by step live demo script is in [`docs/DEMO.md`](docs/DEMO.md). The [actual API persistence proof](evidence/README.md) records MCP results before and after local restarts.
 
 ## How the simulation works
 

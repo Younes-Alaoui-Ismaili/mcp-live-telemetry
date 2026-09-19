@@ -1,0 +1,208 @@
+{
+  "at": "2026-09-09T14:57:26.841Z",
+  "transport": "real MCP stdio subprocess to authenticated API",
+  "provenance": "simulated measurements persisted in SQL",
+  "faultRejected": true,
+  "digest": "7a72a902f813499e9fe0012096459590f096e13d2bfe8b37fcadc13c0c3b8782",
+  "data": {
+    "devices": {
+      "count": 4,
+      "devices": [
+        {
+          "id": "conveyor-03",
+          "name": "Conveyor Motor",
+          "state": "running",
+          "temperature_c": 42.24,
+          "vibration_mm_s": 1.208,
+          "timestamp": 1788963038716
+        },
+        {
+          "id": "press-01",
+          "name": "Hydraulic Press",
+          "state": "running",
+          "temperature_c": 65.32,
+          "vibration_mm_s": 2.328,
+          "timestamp": 1788963038716
+        },
+        {
+          "id": "pump-04",
+          "name": "Coolant Pump",
+          "state": "running",
+          "temperature_c": 57.94,
+          "vibration_mm_s": 1.911,
+          "timestamp": 1788963038716
+        },
+        {
+          "id": "spindle-02",
+          "name": "CNC Spindle",
+          "state": "running",
+          "temperature_c": 50.12,
+          "vibration_mm_s": 1.674,
+          "timestamp": 1788963038716
+        }
+      ]
+    },
+    "telemetry": {
+      "device_id": "press-01",
+      "start": 1788962978716,
+      "end": 1788963038716,
+      "step_ms": 1000,
+      "total": 20,
+      "count": 20,
+      "offset": 0,
+      "has_more": false,
+      "readings": [
+        {
+          "timestamp": 1788963013569,
+          "temperature_c": 63.97,
+          "vibration_mm_s": 2.442,
+          "state": "running"
+        },
+        {
+          "timestamp": 1788963015137,
+          "temperature_c": 63.95,
+          "vibration_mm_s": 2.265,
+          "state": "running"
+        },
+        {
+          "timestamp": 1788963016544,
+          "temperature_c": 65.17,
+          "vibration_mm_s": 2.351,
+          "state": "running"
+        },
+        {
+          "timestamp": 1788963017999,
+          "temperature_c": 64.88,
+          "vibration_mm_s": 2.235,
+          "state": "running"
+        },
+        {
+          "timestamp": 1788963019225,
+          "temperature_c": 63.89,
+          "vibration_mm_s": 2.255,
+          "state": "running"
+        },
+        {
+          "timestamp": 1788963020501,
+          "temperature_c": 92.36,
+          "vibration_mm_s": 6.81,
+          "state": "fault"
+        },
+        {
+          "timestamp": 1788963021825,
+          "temperature_c": 91.85,
+          "vibration_mm_s": 6.845,
+          "state": "fault"
+        },
+        {
+          "timestamp": 1788963023209,
+          "temperature_c": 92.66,
+          "vibration_mm_s": 6.873,
+          "state": "fault"
+        },
+        {
+          "timestamp": 1788963024463,
+          "temperature_c": 91.89,
+          "vibration_mm_s": 6.831,
+          "state": "fault"
+        },
+        {
+          "timestamp": 1788963025788,
+          "temperature_c": 93.29,
+          "vibration_mm_s": 6.839,
+          "state": "fault"
+        },
+        {
+          "timestamp": 1788963027061,
+          "temperature_c": 92.77,
+          "vibration_mm_s": 6.753,
+          "state": "fault"
+        },
+        {
+          "timestamp": 1788963028339,
+          "temperature_c": 93.11,
+          "vibration_mm_s": 6.76,
+          "state": "fault"
+        },
+        {
+          "timestamp": 1788963029703,
+          "temperature_c": 65.38,
+          "vibration_mm_s": 2.242,
+          "state": "running"
+        },
+        {
+          "timestamp": 1788963031078,
+          "temperature_c": 64.41,
+          "vibration_mm_s": 2.243,
+          "state": "running"
+        },
+        {
+          "timestamp": 1788963032465,
+          "temperature_c": 64.96,
+          "vibration_mm_s": 2.336,
+          "state": "running"
+        },
+        {
+          "timestamp": 1788963033717,
+          "temperature_c": 64.29,
+          "vibration_mm_s": 2.3,
+          "state": "running"
+        },
+        {
+          "timestamp": 1788963034898,
+          "temperature_c": 65.24,
+          "vibration_mm_s": 2.282,
+          "state": "running"
+        },
+        {
+          "timestamp": 1788963036212,
+          "temperature_c": 64.28,
+          "vibration_mm_s": 2.231,
+          "state": "running"
+        },
+        {
+          "timestamp": 1788963037431,
+          "temperature_c": 64.83,
+          "vibration_mm_s": 2.418,
+          "state": "running"
+        },
+        {
+          "timestamp": 1788963038716,
+          "temperature_c": 65.32,
+          "vibration_mm_s": 2.328,
+          "state": "running"
+        }
+      ]
+    },
+    "anomalies": {
+      "count": 2,
+      "window": {
+        "start": 1788962978716,
+        "end": 1788963038716,
+        "step_ms": 1000
+      },
+      "anomalies": [
+        {
+          "id": "002fb856-0841-474f-9466-5303e5965e41",
+          "device_id": "press-01",
+          "metric": "temperature",
+          "started_at": 1788963020501,
+          "ended_at": 1788963028339,
+          "peak_value": 93.29,
+          "threshold": 77,
+          "sample_count": 7
+        },
+        {
+          "id": "cab469f6-298c-4c37-8efe-03d4b2d60865",
+          "device_id": "press-01",
+          "metric": "vibration",
+          "started_at": 1788963020501,
+          "ended_at": 1788963028339,
+          "peak_value": 6.873,
+          "threshold": 4.1,
+          "sample_count": 7
+        }
+      ]
+    }
+  }
+}

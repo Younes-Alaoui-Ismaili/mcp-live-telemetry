@@ -1,9 +1,10 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { Simulator, UnknownDeviceError } from "../simulator/store.js";
+import { UnknownDeviceError } from "../simulator/store.js";
+import type { TelemetrySource } from "../source.js";
 import { getTelemetryInput, getTelemetryOutput } from "../schemas.js";
 import { fail, jsonText, ok } from "./format.js";
 
-export function registerGetTelemetry(server: McpServer, sim: Simulator): void {
+export function registerGetTelemetry(server: McpServer, sim: TelemetrySource): void {
   server.registerTool(
     "get_telemetry",
     {
@@ -25,7 +26,7 @@ export function registerGetTelemetry(server: McpServer, sim: Simulator): void {
     },
     async ({ device_id, start, end, step_ms, limit, offset, response_format }) => {
       try {
-        const { window, readings } = sim.getTelemetry(device_id, { start, end, stepMs: step_ms });
+        const { window, readings } = await sim.getTelemetry(device_id, { start, end, stepMs: step_ms });
         const total = readings.length;
         const page = readings.slice(offset, offset + limit);
         const wireReadings = page.map((r) => ({

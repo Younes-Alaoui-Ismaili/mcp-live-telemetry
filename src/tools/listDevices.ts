@@ -1,5 +1,5 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import type { Simulator } from "../simulator/store.js";
+import type { TelemetrySource } from "../source.js";
 import { listDevicesInput, listDevicesOutput } from "../schemas.js";
 import { jsonText, ok } from "./format.js";
 
@@ -24,7 +24,7 @@ function renderMarkdown(devices: WireDevice[]): string {
   return lines.join("\n").trimEnd();
 }
 
-export function registerListDevices(server: McpServer, sim: Simulator): void {
+export function registerListDevices(server: McpServer, sim: TelemetrySource): void {
   server.registerTool(
     "list_devices",
     {
@@ -43,7 +43,7 @@ export function registerListDevices(server: McpServer, sim: Simulator): void {
       },
     },
     async ({ response_format }) => {
-      const devices: WireDevice[] = sim.listDevices().map(({ device, reading }) => ({
+      const devices: WireDevice[] = (await sim.listDevices()).map(({ device, reading }) => ({
         id: device.id,
         name: device.name,
         state: reading.state,

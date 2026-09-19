@@ -1,5 +1,6 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { Simulator, UnknownDeviceError } from "../simulator/store.js";
+import { UnknownDeviceError } from "../simulator/store.js";
+import type { TelemetrySource } from "../source.js";
 import { getAnomaliesInput, getAnomaliesOutput } from "../schemas.js";
 import { fail, jsonText, ok } from "./format.js";
 import type { Anomaly } from "../types.js";
@@ -17,7 +18,7 @@ function toWire(a: Anomaly) {
   };
 }
 
-export function registerGetAnomalies(server: McpServer, sim: Simulator): void {
+export function registerGetAnomalies(server: McpServer, sim: TelemetrySource): void {
   server.registerTool(
     "get_anomalies",
     {
@@ -39,7 +40,7 @@ export function registerGetAnomalies(server: McpServer, sim: Simulator): void {
     },
     async ({ device_id, start, end, step_ms, response_format }) => {
       try {
-        const { window, anomalies } = sim.getAnomalies(device_id, { start, end, stepMs: step_ms });
+        const { window, anomalies } = await sim.getAnomalies(device_id, { start, end, stepMs: step_ms });
         const wire = anomalies.map(toWire);
         const structured = {
           count: wire.length,

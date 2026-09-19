@@ -16,6 +16,7 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "tsx watch src/index.ts",
+    "demo:publish": "tsx src/publish-demo.ts",
     "test": "vitest run",
     "test:cov": "vitest run --coverage",
     "lint": "eslint .",

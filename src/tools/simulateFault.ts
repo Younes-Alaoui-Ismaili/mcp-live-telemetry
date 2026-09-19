@@ -1,9 +1,10 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { Simulator, UnknownDeviceError } from "../simulator/store.js";
+import { UnknownDeviceError } from "../simulator/store.js";
+import type { TelemetrySource } from "../source.js";
 import { simulateFaultInput, simulateFaultOutput } from "../schemas.js";
 import { fail, jsonText, ok } from "./format.js";
 
-export function registerSimulateFault(server: McpServer, sim: Simulator): void {
+export function registerSimulateFault(server: McpServer, sim: TelemetrySource): void {
   server.registerTool(
     "simulate_fault",
     {
@@ -26,7 +27,7 @@ export function registerSimulateFault(server: McpServer, sim: Simulator): void {
     },
     async ({ device_id, fault_type, duration_seconds }) => {
       try {
-        const fault = sim.simulateFault(device_id, fault_type, duration_seconds * 1000);
+        const fault = await sim.simulateFault(device_id, fault_type, duration_seconds * 1000);
         const structured = {
           fault: {
             id: fault.id,
