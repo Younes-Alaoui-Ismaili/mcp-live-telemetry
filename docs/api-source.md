@@ -34,6 +34,8 @@ npm run demo:publish
 
 The producer registers four known devices, sends 20 ticks and stops. A combined temperature/vibration fault on press-01 returns to normal before the end. Events carry provenance=simulated and unique run/event identifiers. Repeating the command creates a new demonstration, not a retry of the previous scenario.
 
+For a finite video scenario, run `npm run demo:publish -- --profile azure-video`. It sends 90 ticks, waiting one second between successful batches. PRESS-01 overheats at zero-based tick 20 for 40 seconds; the remaining ticks show recovery. Network request time adds to the total runtime. The default profile is unchanged. Both profiles report the actual accepted count returned by the API and stop on a refused request.
+
 ## Real integration proof
 
 Set the token back to Reader:
